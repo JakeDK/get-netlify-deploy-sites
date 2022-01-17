@@ -1,4 +1,4 @@
-const run = require("./get-draft-release");
+const run = require("./get-release");
 
 if (require.main === module) {
   run();
