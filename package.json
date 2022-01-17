@@ -1,16 +1,15 @@
 {
-  "name": "get-release",
+  "name": "get-netlify-deploy-sites",
   "version": "0.1.0",
-  "description": "Get GitHub release information",
+  "description": "Get Netlify deploy information",
   "main": "dist/index.js",
   "scripts": {
-    "lint": "eslint 'src/**.js' 'tests/**.js' --fix",
-    "test": "eslint 'src/**.js' 'tests/**.js' && jest --coverage",
-    "build": "ncc build src/main.js"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "ncc build index.ts"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/bruceadams/get-release"
+    "url": "git+https://github.com/JakeDK/get-netlify-deploy-sites"
   },
   "keywords": [
     "actions",
@@ -19,41 +18,11 @@
   "author": "GitHub",
   "license": "MIT",
   "dependencies": {
-    "@actions/core": "^1.2.6",
-    "@actions/exec": "^1.0.4",
-    "@actions/github": "^2.2.0",
-    "@octokit/plugin-paginate-rest": "^1.1.2"
+    "@actions/core": "^1.2.4",
+    "@tsconfig/recommended": "^1.0.1",
+    "axios": "^0.25.0"
   },
   "devDependencies": {
-    "@zeit/ncc": "^0.20.4",
-    "eslint": "^5.13.0",
-    "eslint-config-airbnb": "^17.1.0",
-    "eslint-config-prettier": "^3.6.0",
-    "eslint-plugin-import": "^2.22.1",
-    "eslint-plugin-jsx-a11y": "^6.3.1",
-    "eslint-plugin-prettier": "^2.7.0",
-    "eslint-plugin-react": "^7.21.3",
-    "husky": "^3.0.5",
-    "jest": "^25.5.4",
-    "prettier": "^1.16.4"
-  },
-  "jest": {
-    "testEnvironment": "node",
-    "collectCoverageFrom": [
-      "src/get-release.js"
-    ],
-    "coverageThreshold": {
-      "global": {
-        "branches": 80,
-        "functions": 80,
-        "lines": 80,
-        "statements": 80
-      }
-    }
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run build && git add dist/"
-    }
+    "@types/node": "^17.0.9"
   }
 }

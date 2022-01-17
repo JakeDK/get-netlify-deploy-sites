@@ -1,6 +1,10 @@
-# GitHub Action - Get latest Release
+# GitHub Action - Get latest Netlify deploy links
 
-This GitHub Action (written in JavaScript) wraps the [GitHub Release API](https://developer.github.com/v3/repos/releases/), specifically the [Get a Release](https://developer.github.com/v3/repos/releases/#create-a-release) endpoint, to allow you to leverage GitHub Actions to get releases.
+This GitHub Action (written in Typescript) fetches the Netlify sites and returns the siteName and deployUrl.
+
+Install:
+ - npm i -g @vercel/ncc
+ - npm install -g typescript
 
 ## License
 

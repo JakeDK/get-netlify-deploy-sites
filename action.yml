@@ -1,0 +1,16 @@
+name: "Get Netlify deploy links"
+
+description: "Get Netlify deploy links"
+inputs:
+  sites:
+    description: "Netlify sites"
+    required: true
+  netlifyToken:
+    description: "Netlify Token"
+    required: true
+outputs:
+  netlifySites:
+    description: 'Sites with name and deploy url'
+runs:
+  using: "node16"
+  main: "dist/index.js"
