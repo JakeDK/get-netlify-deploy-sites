@@ -1,6 +1,32 @@
 import * as core from '@actions/core';
+import * as github from '@actions/github';
 const axios = require('axios');
 const sites: Array<string> = JSON.parse(core.getInput('sites'));
+
+async function prLink(): Promise<void> {
+  try {
+    const token = core.getInput('github-token');
+    const octokit = github.getOctokit(token);
+    const context = github.context;
+
+    const response = await octokit.rest.pulls.list({
+      owner: context.repo.owner,
+      repo: context.repo.repo,
+      state: 'closed',
+      per_page: 4,
+      base: 'release-v*'
+    });
+
+    if (!response.data) return;
+
+    console.log(response);
+    const releasePr = response.data.filter(item => item.title.indexOf('Release v') !== -1)[0];
+    console.log(releasePr);
+    core.setOutput('pr', `[PR](${releasePr})`);
+  } catch (error) {
+    console.log(error);
+  }
+}
 
 async function run(): Promise<void> {
   try {
@@ -10,7 +36,6 @@ async function run(): Promise<void> {
     }})
   
     if (!response.data) return;
-  
     generateDeployUrls(response.data);
   } catch (error) {
     console.log(error);
@@ -42,4 +67,5 @@ function setOutput(netlifySites: Array<{ site: string, deployUrl: string }>): vo
   core.setOutput('netlifySites', `${list.replace(/"\\n/g, '').replace(/,/g, '\n').replace(/"/g, '').replace(/^\[([\s\S]*)]$/, "$1")}`);
 }
 
+prLink();
 run();
